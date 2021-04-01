@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>gf</groupId>
+	<artifactId>MyMultiModuleMaven</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+<!--
+Aggregation:
+- Collects all the available modules to build
+- Sorts the projects into the correct build order
+- Builds the selected projects in order
+-->
+	<modules>
+		<module>MySubModule</module>
+	</modules>
+
+	<properties>
+		<my.property>hello</my.property>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.9</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>
