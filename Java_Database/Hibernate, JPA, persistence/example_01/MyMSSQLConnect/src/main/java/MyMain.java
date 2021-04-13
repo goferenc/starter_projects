@@ -1,29 +1,33 @@
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class MyMain {
-	
-	public static void main(String[] args) {	
+
+	public static void main(String[] args) {
 		insert();
 	}
-	
+
 	private static void insert() {
+
+		StandardServiceRegistry standardServiceRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+
+		SessionFactory factory = new MetadataSources(standardServiceRegistry) 
+				 .buildMetadata() 
+				 .buildSessionFactory(); 
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MyMSSQLPersistence");
-		EntityManager em = emf.createEntityManager();
- 
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
- 
 		Employee employee = new Employee();
-		employee.setName("Will");
+		employee.setName("Emma");
 		employee.setAge(53);
-		em.persist(employee);
- 
-		transaction.commit();
-        
+		
+		try (Session session = factory.openSession()) { 
+			 Transaction tx = session.beginTransaction(); 
+			 session.persist(employee); 
+			 tx.commit(); 
+		} 
 	}
-	
+
 }

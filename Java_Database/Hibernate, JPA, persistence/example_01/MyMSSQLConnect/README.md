@@ -6,18 +6,17 @@
     ├───main
     │   ├───java
     │   │       Employee.java
+    │   │       hibernate.cfg.xml
     │   │       MyMain.java
     │   │
     │   └───resources
     │       └───META-INF
-    │               persistence.xml
-    │
     └───test
         ├───java
         └───resources
 
 Hibernate
 JPA
-persistence.xml
+hibernate.cfg.xml
 
 DOCX/Microsoft_SQL_Server_2019_INSTALL.docx
